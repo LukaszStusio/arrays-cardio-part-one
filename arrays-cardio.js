@@ -54,4 +54,105 @@ Object.entries(meats).forEach(entry => {
 console.log('deconstructed version:');
 Object.entries(meats).forEach(([typeOfMeat, quantity]) => console.log(typeOfMeat, quantity));
 
-// THE END :)
+// INSTANCE METHODS:
+
+const buns = ["egg", "wonder", "brioche"];
+console.log(buns.join(' or '));
+
+const sentence = "hot dogs, hamburgers, sausages, corn";
+console.log(sentence.split(', '));
+
+// 1 Take the last item from toppings with pop()
+const toppings = ["Mushrooms", "Tomatos", "Jalapeno", "Peppers", "Olives",
+"Anchioves", "Cabbage", "Onion", "Avocado", "Extra cheese"];
+
+const spices = ["salt", "pepper", "oregano"];
+console.log(toppings);
+console.log(toppings.pop());
+console.log(toppings);
+console.log('.pop() is a mutable method so you have to push back that taken item - "Avocado" in this example:');
+
+// 2 Adding it back with push()
+const lastItem = toppings.pop();
+console.log(lastItem);
+toppings.push(lastItem);
+console.log(toppings);
+
+// Make it as a function?
+console.log('As a function? OK, works.');
+let lastItemSpicesMenu = immutablePop(toppings);
+let lastItemToppingsMenu = immutablePop(spices);
+function immutablePop(array) {
+    const item = array.pop();
+    array.push(item);
+    return item;
+};
+console.log(immutablePop(toppings));
+console.log(lastItemSpicesMenu);
+console.log(lastItemToppingsMenu);
+
+// kriss - why pop() when it can be simple?
+console.log(toppings[toppings.length -1]);
+console.log(toppings);
+
+// 3 take the first item from toppings with shift()
+const firstItemToppings = toppings.shift();
+console.log(firstItemToppings);
+
+// 4 add it back with unshift()
+toppings.unshift(firstItemToppings);
+console.log(toppings);
+
+// do the last four but immutable (with spreads and new variables)
+let newToppings = toppings.slice(0, toppings.length -1);
+console.log(newToppings)
+
+newToppings = [...newToppings, toppings[toppings.length - 1]];
+console.log(newToppings)
+
+// make a copy of toppings with array with slice()
+const toppingsCopy = toppings.slice(0);
+console.log('slice() copy:');
+console.log(toppingsCopy);
+
+toppings[0] = 'Toxic mushroom'
+console.log('check the original toppings array if changed by toppings[0] = "Toxic mushroom"');
+console.log(toppings);
+
+// make a copy of toppings with spread
+const toppingsCopySpread = [...toppings];
+console.log('spread: ');
+console.log(toppingsCopySpread);
+
+// take out items 3 to 5 of your new toppings array with splice()
+toppingsCopy.splice(2, 3);
+console.log('take out items 3 to 5 with splice() from toppingsCopy array');
+console.log('Wes made a mistake here')
+console.log(toppingsCopy);
+
+// find the index of avocado with indexOf() & lastIndexOf()
+const avocadoIndex = toppings.indexOf('Avocado');
+console.log(avocadoIndex);
+
+// check if Tabasco Sauce is in the toppings with includes()
+console.log('check if Tabasco Sauce is in the toppings with includes()')
+const isInToppings = toppings.includes('Tabasco Sauce');
+console.log(isInToppings);
+
+// add it if not
+console.log('add it if not')
+if(!isInToppings) {
+    toppings.push('Tabasco Sauce')
+};
+console.log(toppings);
+
+// flip those toppings with reverse()
+console.log('flip those toppings with reverse()');
+console.log('Mutable way:');
+console.log('commented')
+// toppings.reverse();
+
+console.log('Immutable way:');
+const toppingsReversed = [...toppings].reverse();
+console.log(toppingsReversed);
+console.log(toppings);
