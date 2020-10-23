@@ -156,3 +156,86 @@ console.log('Immutable way:');
 const toppingsReversed = [...toppings].reverse();
 console.log(toppingsReversed);
 console.log(toppings);
+
+// #CALLBACK METHODS & FUNCTION GENERATION
+const feedback = [
+    {comment: 'Love the burgs', rating: 4},
+    {comment: 'Horrible service', rating: 2},
+    {comment: 'Smoothies are great, liked the burger', rating: 5},
+    {comment: 'Ambiance needs work', rating: 3},
+    {comment: 'I don\'t like burgers', rating: 1},
+];
+
+console.table(feedback);
+
+// find the first rating that talks about a burger  with find()
+console.log('find the first rating that talks about a burger  with find()');
+const findBurgerRating = (singleFeedback) => singleFeedback.comment.includes('burg');
+const burgerRating = feedback.find(findBurgerRating);
+console.log(burgerRating);
+
+// you can group your utility functions in an object:
+const utils = {
+    findBurgerRating: function (singleFeedback) {
+        return singleFeedback.comment.includes('burg')
+    }
+};
+// function that creastes function to overtake the need of variable creation for every single word we look for
+console.log('function that creastes function to overtake the need of variable creation for every single word we look for');
+function findByWord (word) {
+    return function(singleFeedback) {
+        return singleFeedback.comment.includes(word);
+    }
+};
+
+const wordRating = feedback.find(findByWord('Smoothies'));
+console.log('wordRating for "Smoothies"')
+console.log(wordRating);
+
+// find all rating thet are above 2 with filter()
+console.log('find all rating thet are above 2 with filter()');
+
+const goodReviews = feedback.filter(singleFeedback => singleFeedback.rating > 2);
+console.table(goodReviews);
+
+function filterByMinRating(rating){
+    return function(singleFeedback) {
+        return singleFeedback.rating > rating;
+    }
+};
+
+const betterReviews = feedback.filter(filterByMinRating(3));
+console.table(betterReviews);
+
+// Find all ratings that talk about a burger with filter()
+console.log('Find all ratings that talk about a burger with filter()');
+
+const burgRatings = feedback.filter(findByWord('burg'));
+console.table(burgRatings);
+
+// remove the one star ratings
+console.log('remove the one star ratings')
+const onlyLegitRatings = feedback.filter(single => single.rating !== 1);
+console.table(onlyLegitRatings);
+
+// Check if there is at least 5 or more of one type of meat with some()
+console.log('Check if there is at least 5 or more of one type of meat with some()');
+
+const atLeastFive = Object.values(meats).some(meatValue => meatValue >= 5);
+console.log(atLeastFive);
+
+// every()
+console.log('every()');
+const isThereEnoughOfEveryMeat = Object.values(meats).every(meatValue => meatValue >= 5);
+console.log(isThereEnoughOfEveryMeat);
+
+// sort the toppings aphabetically using sort()
+console.log('sort the toppings aphabetically using sort()')
+
+// example on numbers as sort() converts them into UTF-16 strings
+console.log('example on numbers as sort() converts them into UTF-16 strings')
+const numbers = [1, 3, 300, 235, 89, 100];
+const sortedNumbers = numbers.sort((firstItem, secondItem) => firstItem - secondItem);
+console.log(sortedNumbers);
+
+// looping methods - i think I'll do it the next file
