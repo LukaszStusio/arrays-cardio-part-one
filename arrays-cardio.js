@@ -38,8 +38,11 @@ const meats = {
     pork: 7,
 };
 
+console.log('Object.entries(meats)');
 console.log(Object.entries(meats));
+console.log("Object.keys(meats)");
 console.log(Object.keys(meats));
+console.log("Object.values(meats)");
 console.log(Object.values(meats));
 
 Object.entries(meats).forEach(entry => {
